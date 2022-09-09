@@ -14,11 +14,28 @@ public class Items {
         return itemList;
     }
 
-    public List<Item> deleteItem(int id){
-        itemList.remove(id-1);
-
-        return itemList;
+    public void deleteItem(String id){
+        for (int i = 0; i < itemList.size(); i++){
+            if(itemList.get(i).getId().equals(id)){
+                itemList.remove(i);
+            }
+        }
     }
+
+    public Item listHasItem(String id){
+        Item existingItem = null;
+
+        for (int i = 0; i < itemList.size(); i++){
+            System.out.print(itemList.get(i));
+            if(itemList.get(i).getId().equals(id)){
+                existingItem = itemList.get(i);
+            }
+        }
+
+        return existingItem;
+    }
+
+
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
     }
