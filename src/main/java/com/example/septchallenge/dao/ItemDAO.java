@@ -11,8 +11,8 @@ public class ItemDAO {
 
     static {
         list.getItemList().add(new Item("1", "item1", "test item 1", 1.1));
-        list.getItemList().add(new Item("2", "Alex", "test item 2", 2.2));
-        list.getItemList().add(new Item("3", "David", "test item 3", 3.3));
+        list.getItemList().add(new Item("2", "item2", "test item 2", 2.2));
+        list.getItemList().add(new Item("3", "item3", "test item 3", 3.3));
     }
 
     public Items getAllItems(){
