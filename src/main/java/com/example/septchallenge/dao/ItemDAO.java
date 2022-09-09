@@ -26,4 +26,15 @@ public class ItemDAO {
     public Item getItemByID(int id){
         return list.getItemList().get(id-1);
     }
+
+    public Item updateItem(Item item, int id){
+        Item existingItem = getItemByID(id-1);
+
+        existingItem.setId(item.getId());
+        existingItem.setName(item.getName());
+        existingItem.setDesc(item.getDesc());
+        existingItem.setPrice(item.getPrice());
+
+        return existingItem;
+    }
 }

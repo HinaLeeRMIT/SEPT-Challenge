@@ -4,10 +4,12 @@ import com.example.septchallenge.dao.ItemDAO;
 import com.example.septchallenge.model.Item;
 import com.example.septchallenge.model.Items;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.xml.transform.Templates;
 import java.net.URI;
 
 @RestController
@@ -25,8 +27,9 @@ public class ItemController {
     }
 
     //Get
-    @GetMapping(path="/item{}", produces = "application/json")
+    @GetMapping(path="/item{id}", produces = "application/json")
     public Item getItem() {
+
         return itemDAO.getItemByID(Integer.parseInt(itemID));
     }
 
@@ -46,6 +49,11 @@ public class ItemController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("item{id}")
+    public ResponseEntity<Item> updateItem(@PathVariable("id") int id, @RequestBody Item item){
+        return new ResponseEntity<Item>(itemDAO.updateItem(item, id), HttpStatus.OK);
     }
 
 }
