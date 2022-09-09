@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.xml.transform.Templates;
 import java.net.URI;
 
 @RestController
@@ -27,7 +26,7 @@ public class ItemController {
 
     //Get
     @GetMapping(path="/item{id}", produces = "application/json")
-    public Item getItem(@PathVariable("id") int id) {
+    public Item getItem(@PathVariable("id") String id) {
 
         return itemDAO.getItemByID(id);
     }
@@ -51,12 +50,12 @@ public class ItemController {
     }
 
     @PutMapping(path = "/item{id}",consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Item> updateItem(@PathVariable("id") int id, @RequestBody Item item){
-        return new ResponseEntity<Item>(itemDAO.updateItem(item, id), HttpStatus.OK);
+    public ResponseEntity<Item> updateItem(@PathVariable("id") String id, @RequestBody Item item){
+        return new ResponseEntity<>(itemDAO.updateItem(item, id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/item{id}", produces = "application/json")
-    public void deleteItem(@PathVariable("id") int id){
+    public void deleteItem(@PathVariable("id") String id){
         itemDAO.deleteItem(id);
     }
 }

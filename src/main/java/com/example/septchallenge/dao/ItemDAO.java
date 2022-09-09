@@ -23,11 +23,14 @@ public class ItemDAO {
         list.getItemList().add(item);
     }
 
-    public Item getItemByID(int id){
-        return list.getItemList().get(id-1);
+    public Item getItemByID(String id){
+
+        Item item = list.listHasItem(id);
+
+        return item;
     }
 
-    public Item updateItem(Item item, int id){
+    public Item updateItem(Item item, String id){
         Item existingItem = getItemByID(id);
 
         existingItem.setId(item.getId());
@@ -38,7 +41,8 @@ public class ItemDAO {
         return existingItem;
     }
 
-    public void deleteItem(int id){
+    public void deleteItem(String id){
+
         list.deleteItem(id);
     }
 }
