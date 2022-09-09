@@ -17,15 +17,22 @@ public class ItemController {
     @Autowired
     private ItemDAO itemDAO;
 
-    @GetMapping(path="/", produces = "application/json")
+    @GetMapping(path="/item", produces = "application/json")
     public Items getItems() {
         return itemDAO.getAllItems();
     }
 
-    @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
+    @GetMapping(path="/item{integer}", produces = "application/json")
+    public Items getItem() {
+        return getItem();
+    }
+
+    @PostMapping(path= "", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addItem(@RequestBody Item item){
-        Integer id = itemDAO.getAllItems().getItemList().size() + 1;
-        item.setId(id.toString());
+        //We can use this code if we want to automatically increment the ID
+        //
+        //Integer id = itemDAO.getAllItems().getItemList().size() + 1;
+        //item.setId(id.toString());
 
         itemDAO.addItem(item);
 
