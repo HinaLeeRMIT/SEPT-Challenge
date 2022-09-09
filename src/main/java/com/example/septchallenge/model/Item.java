@@ -1,4 +1,4 @@
-package com.example.septchallenge.model.Item;
+package com.example.septchallenge.model;
 
 public class Item {
     public Item() {
