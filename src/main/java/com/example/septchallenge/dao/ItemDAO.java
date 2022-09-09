@@ -28,7 +28,7 @@ public class ItemDAO {
     }
 
     public Item updateItem(Item item, int id){
-        Item existingItem = getItemByID(id-1);
+        Item existingItem = getItemByID(id);
 
         existingItem.setId(item.getId());
         existingItem.setName(item.getName());
@@ -36,5 +36,9 @@ public class ItemDAO {
         existingItem.setPrice(item.getPrice());
 
         return existingItem;
+    }
+
+    public void deleteItem(int id){
+        list.deleteItem(id);
     }
 }

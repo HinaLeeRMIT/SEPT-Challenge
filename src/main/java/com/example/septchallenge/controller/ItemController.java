@@ -18,7 +18,6 @@ public class ItemController {
 
     @Autowired
     private ItemDAO itemDAO;
-    private String itemID;
 
     //Get all items
     @GetMapping(path="/item", produces = "application/json")
@@ -28,9 +27,9 @@ public class ItemController {
 
     //Get
     @GetMapping(path="/item{id}", produces = "application/json")
-    public Item getItem() {
+    public Item getItem(@PathVariable("id") int id) {
 
-        return itemDAO.getItemByID(Integer.parseInt(itemID));
+        return itemDAO.getItemByID(id);
     }
 
     //Post Item
@@ -51,9 +50,13 @@ public class ItemController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("item{id}")
+    @PutMapping(path = "/item{id}",consumes = "application/json", produces = "application/json")
     public ResponseEntity<Item> updateItem(@PathVariable("id") int id, @RequestBody Item item){
         return new ResponseEntity<Item>(itemDAO.updateItem(item, id), HttpStatus.OK);
     }
 
+    @DeleteMapping(path = "/item{id}", produces = "application/json")
+    public void deleteItem(@PathVariable("id") int id){
+        itemDAO.deleteItem(id);
+    }
 }
