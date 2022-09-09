@@ -22,4 +22,8 @@ public class ItemDAO {
     public void addItem(Item item){
         list.getItemList().add(item);
     }
+
+    public Item getItemByID(int id){
+        return list.getItemList().get(id-1);
+    }
 }
